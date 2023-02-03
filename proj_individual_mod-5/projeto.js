@@ -18,7 +18,7 @@ const excluirDaLista = (prop) => {
 }
 
 const ordenar = () => {
-    lista.sort((a, b) => lista.findIndex((elemento) => elemento === a) < lista.findIndex((elemento) => elemento === b));
+    lista.sort();
 };
 
 const listar = () => {
