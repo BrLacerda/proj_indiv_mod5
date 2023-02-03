@@ -1,12 +1,21 @@
 const readlineSync = require('readline-sync')
 
 
-const lista = [];
+let lista = [];
 let resp = '';
 
 const adicionarNaLista = (prop) => {
-    lista.unshift(prop)
+    lista.push(prop)
 };
+
+const excluirDaLista = (prop) => {
+    if (prop.length == 1) {
+        lista.pop()
+    }
+    else {
+        lista = lista.filter(elemento => elemento !== prop.substr(1, prop.length - 1))
+    }
+}
 
 const ordenar = () => {
     lista.sort();
@@ -17,7 +26,7 @@ const listar = () => {
 };
 
 while (true) {
-    resp = readlineSync.question("Digite a propriedade CSS ou 'SAIR' para exibir a listagem e encerrar: ")
+    resp = readlineSync.question("Digite a propriedade CSS, 'SAIR' para exibir a listagem e encerrar, '!' para excluir o ultimo item da lista ou '!nome_do_item' para excluir um item especifico: ")
 
     if (resp.toLowerCase() == "sair") {
         ordenar();
@@ -25,6 +34,11 @@ while (true) {
             break;
     }
     else if (resp.toLowerCase() !== "sair" && resp !== "") {
-        adicionarNaLista(resp);
+        if (resp[0] !== '!') {
+            adicionarNaLista(resp);
+        }
+        else if (resp[0] == '!') {
+            excluirDaLista(resp);
+        }
     }
-}
+} 
