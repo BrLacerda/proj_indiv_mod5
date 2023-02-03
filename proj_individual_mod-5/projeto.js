@@ -1,5 +1,5 @@
-const readlineSync = require('readline-sync')
-
+import readlineSync from 'readline-sync';
+import chalk from 'chalk';
 
 let lista = [];
 let resp = '';
@@ -22,11 +22,11 @@ const ordenar = () => {
 };
 
 const listar = () => {
-    lista.forEach((elemento)=> {console.log(elemento); });
+    lista.forEach((elemento, i)=> {console.log(chalk.greenBright(`${i+1}- ${elemento}`)); });
 };
 
 while (true) {
-    resp = readlineSync.question("Digite a propriedade CSS, 'SAIR' para exibir a listagem e encerrar, '!' para excluir o ultimo item da lista ou '!nome_do_item' para excluir um item especifico: ")
+    resp = readlineSync.question(chalk.redBright("Digite a propriedade CSS, 'SAIR' para exibir a listagem e encerrar, '!' para excluir o ultimo item da lista ou '!nome_do_item' para excluir um item especifico: "))
 
     if (resp.toLowerCase() == "sair") {
         ordenar();
